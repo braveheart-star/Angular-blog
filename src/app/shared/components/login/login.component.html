@@ -1,0 +1,23 @@
+<h1 class="align-center">Login page</h1>
+<form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+  <div class="container">
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-hint *ngIf="loginForm.controls.email.errors?.required">Email is required</mat-hint>
+      <mat-hint *ngIf="loginForm.controls.email.errors?.email">Email is invalid</mat-hint>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" formControlName="password">
+      <mat-hint *ngIf="loginForm.controls.password.errors?.required">Password is required</mat-hint>
+      <mat-hint *ngIf="loginForm.controls.password.errors?.minlength">
+        Password should be atleat 3 characters long
+      </mat-hint>
+
+    </mat-form-field>
+    <button mat-flat-button color="primary" [disabled]="loginForm.invalid" type="submit">Login</button>
+
+  </div>
+
+</form>

@@ -1,0 +1,67 @@
+<h1 class="align-center">Register page</h1>
+<form [formGroup]="registerForm" #f="ngForm" (ngSubmit)="submitRegister(f)">
+  <div class="container">
+    <mat-form-field>
+      <input matInput placeholder="Full Name" formControlName="name">
+      <mat-hint align="end" *ngIf="(f.submitted ||
+         !registerForm.get('name')?.untouched) &&
+          registerForm.get('name')?.errors?.required">
+        Name is required</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Your Username" formControlName="username">
+      <mat-hint align="end" *ngIf="(f.submitted ||
+        !registerForm.get('username')?.untouched) &&
+        registerForm.get('username')?.errors?.required">
+        Username is required</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-hint align="end" *ngIf="(f.submitted ||
+        !registerForm.controls.email.untouched) &&
+        registerForm.controls.email.errors?.required">
+        Email is required</mat-hint>
+      <mat-hint align="end" *ngIf="(f.submitted ||
+        !registerForm.controls.email.untouched) &&
+        registerForm.controls.email.errors?.email">
+        Email is invalid</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" formControlName="password">
+      <mat-hint align="end" *ngIf="(f.submitted ||
+      !registerForm.controls.password.untouched) &&
+      registerForm.controls.password.errors?.required">
+        Password is required
+      </mat-hint>
+      <mat-hint align="end" *ngIf="(f.submitted ||
+        !registerForm.controls.password.untouched) &&
+        registerForm.controls.password.errors?.minlength">
+        Password should be atleat 3 characters long
+      </mat-hint>
+      <mat-hint *ngIf="(f.submitted ||
+        !registerForm.controls.password.untouched) &&
+        registerForm.controls.password.errors?.passwordInvalid">
+        Password should contain atleast a number
+      </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="password" matInput placeholder="Confirm Password" formControlName="confirmPassword">
+      <mat-hint align="end" *ngIf="(f.submitted ||
+        !registerForm.controls.confirmPassword.untouched) &&
+        registerForm.controls.confirmPassword.errors?.required">
+        Password confirmation is required</mat-hint>
+      <mat-hint  *ngIf="!registerForm.controls.confirmPassword.untouched &&
+      !registerForm.controls.password.untouched &&
+      registerForm.errors?.passwordMatching">
+        Passwords does not match</mat-hint>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" [disabled]="registerForm.invalid">Login</button>
+
+  </div>
+
+</form>

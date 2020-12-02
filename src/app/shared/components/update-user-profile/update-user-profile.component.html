@@ -1,0 +1,40 @@
+<form [formGroup]="form" (ngSubmit)="update()">
+  <div>
+    <mat-card class="container">
+      <div style="width: 80%">
+        <mat-card>
+          <mat-card-content>
+            <img *ngIf="form.get('profileImage')?.value" [src]="URL + 'users/profile-image/' + $any(form.get('profileImage')?.value)">
+            <ul>
+              <li>
+                <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+              </li>
+            </ul>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-flat-button   color="warn" (click)="onClick()">
+              <mat-icon>cloud_upload</mat-icon>
+            </button>
+          </mat-card-actions>
+
+        </mat-card>
+        <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept="image/*" style="display: none;">
+      </div>
+      <div style="width:80%" class="container">
+        <mat-form-field>
+          <input matInput placeholder="ID" formControlName="id">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Username" formControlName="username">
+        </mat-form-field>
+      </div>
+      <button mat-flat-button color="primary" [disabled]="!form.valid" type="submit">Update Profile</button>
+
+    </mat-card>
+  </div>
+</form>
